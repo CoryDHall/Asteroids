@@ -28,6 +28,8 @@
     <script src="lib/gameView.js" charset="utf-8"></script>
     <script src="lib/bullet.js" charset="utf-8"></script>
     <script src="lib/keymaster.js"></script>
+    <script src="lib/gyronorm.complete.js"></script>
+
     <script>
       var canvasEl = document.getElementById("game-canvas");
       canvasEl.setAttribute("width", window.innerWidth);
@@ -44,5 +46,46 @@
       gameView.start();
     </script>
 
+    <script type="text/javascript">
+        var gn = new GyroNorm();
+
+        gn.init().then(function(){
+          var timeouts = []
+            gn.start(function(data){
+                // Process:
+                // data.do.alpha    ( deviceorientation event alpha value )
+                // data.do.beta     ( deviceorientation event beta value )
+                // data.do.gamma    ( deviceorientation event gamma value )
+                // data.do.absolute ( deviceorientation event absolute value )
+
+
+
+                // data.dm.x        ( devicemotion event acceleration x value )
+                // data.dm.y        ( devicemotion event acceleration y value )
+                // data.dm.z        ( devicemotion event acceleration z value )
+
+                // data.dm.gx       ( devicemotion event accelerationIncludingGravity x value )
+                // data.dm.gy       ( devicemotion event accelerationIncludingGravity y value )
+                // data.dm.gz       ( devicemotion event accelerationIncludingGravity z value )
+
+                // data.dm.alpha    ( devicemotion event rotationRate alpha value )
+                // data.dm.beta     ( devicemotion event rotationRate beta value )
+                // data.dm.gamma    ( devicemotion event rotationRate gamma value )
+
+                game.allObjects.forEach(function (obj) {
+                  obj.accel[0] += data.dm.x;
+                  obj.accel[y] += data.dm.y;
+                });
+
+                timeouts.push(setTimeout(function () {
+                  console.log(data);
+                  // body...
+                  timeouts.forEach(clearTimeout.bind(window));
+                }, 5000));
+            });
+        }).catch(function(e){
+          // Catch if the DeviceOrientation or DeviceMotion is not supported by the browser or device
+        });
+    </script>
   </body>
 </html>
