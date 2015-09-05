@@ -72,10 +72,14 @@
                 // data.dm.beta     ( devicemotion event rotationRate beta value )
                 // data.dm.gamma    ( devicemotion event rotationRate gamma value )
 
-                game.allObjects.forEach(function (obj) {
+                game.allObjects().forEach(function (obj) {
                   obj.accel[0] += data.dm.x;
-                  obj.accel[y] += data.dm.y;
+                  obj.accel[1] += data.dm.y;
+
                 });
+                ctx.font = "18px sans-serif";
+                  ctx.fillText(JSON.stringify(data), 500, 500);
+                  ctx.fill();
 
                 timeouts.push(setTimeout(function () {
                   console.log(data);
