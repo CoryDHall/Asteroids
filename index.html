@@ -79,21 +79,7 @@
                 // });
 
                 game.ship.accel = [game.ship.accel[0] + data.do.gamma / 10000000, game.ship.accel[1] += data.do.beta / 10000000];
-                ctx.font = "34px sans-serif";
-                ctx.fillStyle = "white";
-                ctx.shadowColor = "black";
-                ctx.shadowBlur = 10.0;
-                  ctx.fillText(JSON.stringify(data.do), 30, 30, 600);
-                  ctx.fillText(JSON.stringify(data.dm), 30, 80, 600);
-                  ctx.fill();
-
-                  ctx.shadowColor = "transparent";
-
-                timeouts.push(setTimeout(function () {
-                  console.log(data);
-                  // body...
-                  timeouts.forEach(clearTimeout.bind(window));
-                }, 5000));
+                game.ship.vel = game.ship.vel[0] == 0 && game.ship.vel[1] == 0 ? [Number.MIN_VALUE, Number.MIN_VALUE] : game.ship.vel; 
             });
         }).catch(function(e){
           // Catch if the DeviceOrientation or DeviceMotion is not supported by the browser or device
