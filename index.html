@@ -77,9 +77,15 @@
                   obj.accel[1] += data.dm.y;
 
                 });
-                ctx.font = "18px sans-serif";
-                  ctx.fillText(JSON.stringify(data), 500, 500);
+                ctx.font = "34px sans-serif";
+                ctx.fillStyle = "white";
+                ctx.shadowColor = "black";
+                ctx.shadowBlur = 10.0;
+                  ctx.fillText(JSON.stringify(data.do), 30, 30, 600);
+                  ctx.fillText(JSON.stringify(data.dm), 30, 80, 600);
                   ctx.fill();
+
+                  ctx.shadowColor = "transparent";
 
                 timeouts.push(setTimeout(function () {
                   console.log(data);
