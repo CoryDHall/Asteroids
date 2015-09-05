@@ -49,7 +49,7 @@
     <script type="text/javascript">
         var gn = new GyroNorm();
 
-        gn.init().then(function(){
+        gn.init({frequency: 1000/240}).then(function(){
           var timeouts = []
             gn.start(function(data){
                 // Process:
@@ -78,7 +78,7 @@
                 //
                 // });
 
-                game.ship.accel = [game.ship.accel[0] + data.do.gamma / 1000000, game.ship.accel[1] += data.do.beta / 1000000];
+                game.ship.accel = [game.ship.accel[0] + data.do.gamma / 10000000, game.ship.accel[1] += data.do.beta / 10000000];
                 ctx.font = "34px sans-serif";
                 ctx.fillStyle = "white";
                 ctx.shadowColor = "black";
