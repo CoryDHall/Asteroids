@@ -72,11 +72,13 @@
                 // data.dm.beta     ( devicemotion event rotationRate beta value )
                 // data.dm.gamma    ( devicemotion event rotationRate gamma value )
 
-                game.allObjects().forEach(function (obj) {
-                  obj.vel[0] += data.do.alpha / 10000;
-                  obj.vel[1] += data.do.beta / 10000;
+                // game.allObjects().forEach(function (obj) {
+                //   obj.vel[0] += data.do.alpha / 10000;
+                //   obj.vel[1] += data.do.beta / 10000;
+                //
+                // });
 
-                });
+                game.ship.accel = [game.ship.accel[0] + data.do.alpha / 1000, game.ship.accel[1] += data.do.beta / 1000];
                 ctx.font = "34px sans-serif";
                 ctx.fillStyle = "white";
                 ctx.shadowColor = "black";
