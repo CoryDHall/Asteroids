@@ -73,8 +73,8 @@
                 // data.dm.gamma    ( devicemotion event rotationRate gamma value )
 
                 game.allObjects().forEach(function (obj) {
-                  obj.accel[0] += data.dm.x / 1000;
-                  obj.accel[1] += data.dm.y / 1000;
+                  obj.accel[0] += data.dm.x / 1000000;
+                  obj.accel[1] += data.dm.y / 1000000;
 
                 });
                 ctx.font = "34px sans-serif";
