@@ -81,9 +81,10 @@
                 //   obj.vel[1] += data.do.beta / 10000;
                 //
                 // });
-
-                game.ship.accel = [game.ship.accel[0] + data.do.gamma / 10000000, game.ship.accel[1] += data.do.beta / 10000000];
-                game.ship.vel = game.ship.vel[0] == 0 && game.ship.vel[1] == 0 ? [Number.MIN_VALUE, Number.MIN_VALUE] : game.ship.vel;
+                game.ship.power([(data.do.gamma > 0) - (data.do.gamma > 0),(data.do.beta > 0) - (data.do.beta > 0)]);
+                console.log(JSON.stringify(data));
+                // game.ship.accel = ;
+                // game.ship.vel = game.ship.vel[0] == 0 && game.ship.vel[1] == 0 ? [Number.MIN_VALUE, Number.MIN_VALUE] : game.ship.vel;
             });
         }).catch(function(e){
           // Catch if the DeviceOrientation or DeviceMotion is not supported by the browser or device
