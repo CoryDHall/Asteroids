@@ -14,7 +14,7 @@
       }
     </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js" charset="utf-8"></script>
   </head>
   <body>
     <canvas id="game-canvas"></canvas>
@@ -79,7 +79,7 @@
                 // });
 
                 game.ship.accel = [game.ship.accel[0] + data.do.gamma / 10000000, game.ship.accel[1] += data.do.beta / 10000000];
-                game.ship.vel = game.ship.vel[0] == 0 && game.ship.vel[1] == 0 ? [Number.MIN_VALUE, Number.MIN_VALUE] : game.ship.vel; 
+                game.ship.vel = game.ship.vel[0] == 0 && game.ship.vel[1] == 0 ? [Number.MIN_VALUE, Number.MIN_VALUE] : game.ship.vel;
             });
         }).catch(function(e){
           // Catch if the DeviceOrientation or DeviceMotion is not supported by the browser or device
