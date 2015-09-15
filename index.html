@@ -3,12 +3,13 @@
   <head>
     <title>Asteroids</title>
     <style media="screen">
-      html, body, canvas {
+      html, body, canvas, p{
         margin: 0;
         padding: 0;
         border: 0;
         overflow: hidden;
         background: #005;
+        font-family: monospace;
       }
 
       .ui-loader {
@@ -26,12 +27,26 @@
         display: block;
         /*-webkit-transform: translateZ(-40px);*/
       }
+      asteroids-overlay {
+        display: block;
+        position: absolute;
+        color: hsla(360, 100%, 100%, 0.9);
+        top: 0;
+        left: 0;
+        padding: 5px;
+        font-weight: bold;
+        text-shadow: 0 1px 1px hsla(360, 100%, 0%, 0.5);
+      }
+      asteroids-overlay p {
+        background: transparent;
+      }
     </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js" charset="utf-8"></script>
   </head>
   <body>
     <canvas id="game-canvas"></canvas>
+    <asteroids-overlay></asteroids-overlay>
 
 
     <script src="lib/movingObject.js" charset="utf-8"></script>
