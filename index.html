@@ -25,7 +25,8 @@
         cursor: none;
         margin: 0 auto;
         display: block;
-        /*-webkit-transform: scaleY(0.8);*/
+        /*-webkit-transform: scale(0.5) translateY(-50%) translateX(-50%);
+        transform: scale(0.5) translateY(-50%) translateX(-50%);*/
         /*transform: scaleY(0.8);*/
 
       }
@@ -63,24 +64,35 @@
 
     <script>
       var canvasEl = document.getElementById("game-canvas");
-      canvasEl.setAttribute("width", window.innerWidth);
-      canvasEl.setAttribute("Height", window.innerHeight);
-      $(window).on("resize", function() {
-        setTimeout(function() {
-          canvasEl.setAttribute("Height", window.innerHeight);
-        }, 10);
-      });
+      canvasEl.setAttribute("width", window.innerWidth * 2);
+      canvasEl.setAttribute("height", window.innerHeight * 2);
       var ctx = canvasEl.getContext('2d');
       Asteroids = Asteroids || {};
       var game = new Asteroids.Game(canvasEl.width, canvasEl.height);
+      // Asteroids.Game.DIM_X = window.innerWidth;
+      // Asteroids.Game.DIM_Y = window.innerHeight;
       var gameView = new Asteroids.GameView(game, ctx);
       gameView.start();
-    </script>
+      var resizing = false;
+      // $(window).on("resize", function() {
+      //   if (resizing) {
+      //     return;
+      //   }
+      //   setTimeout(function() {
+      //     resizing = false;
+      //     var oldW = ctx.canvas.width, oldH = ctx.canvas.height;
+      //     Asteroids.Game.DIM_X = window.innerWidth;
+      //     Asteroids.Game.DIM_Y = window.innerHeight;
+      //     canvasEl.setAttribute("height", window.innerHeight);
+      //     canvasEl.setAttribute("width", window.innerWidth);
+      //     ctx.scale(1 / (oldW / window.innerWidth), 1 / (oldH / window.innerHeight));
+      //   }, 50);
+      // });
 
-    <script type="text/javascript">
+
         var gn = new GyroNorm();
 
-        gn.init({frequency: 1000/30}).then(function(){
+        gn.init({frequency: 1000/30, decimalCount: 5}).then(function(){
           var timeouts = []
             gn.start(function(data){
                 // Process:
@@ -103,12 +115,12 @@
                 // data.dm.beta     ( devicemotion event rotationRate beta value )
                 // data.dm.gamma    ( devicemotion event rotationRate gamma value )
 
-                // game.allObjects().forEach(function (obj) {
-                //   obj.vel[0] += data.do.alpha / 10000;
-                //   obj.vel[1] += data.do.beta / 10000;
-                //
-                // });
-                game.ship.power([((data.dm.gamma > 0) - (data.dm.gamma < 0)) / 10,((data.dm.beta > 0) - (data.dm.beta < 0)) / 10]);
+                game.allObjects().forEach(function (obj) {
+                  obj.vel[0] += data.do.gamma / 10000;
+                  obj.vel[1] += data.do.beta / 10000;
+
+                });
+                // game.ship.power([((data.do.gamma > 0) - (data.do.gamma < 0)) / 10,((data.do.beta > 0) - (data.do.beta < 0)) / 10]);
                 // game.ship.accel = ;
                 // game.ship.vel = game.ship.vel[0] == 0 && game.ship.vel[1] == 0 ? [Number.MIN_VALUE, Number.MIN_VALUE] : game.ship.vel;
             });

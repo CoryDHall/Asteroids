@@ -14,3 +14,4 @@ The goal is to accumulate mass. If your ship has sufficient mass, the asteroid w
 ---
 - Movement is controlled with the arrow keys
 - Use [space] or click to shoot
+- Press [p] to pause
