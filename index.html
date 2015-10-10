@@ -53,16 +53,16 @@
         left: 0;
         padding: 5px;
         font-weight: bold;
-        font-size: 12px;
+        font-size: 20px;
         text-shadow: 0 1px 2px hsla(360, 100%, 0%, 0.75), 0 -1px 2px hsla(360, 100%, 100%, 0.5);
         background: hsla(360, 100%, 0%, 0.8);
         text-align: center;
-        line-height: 8px;
+        line-height: 13px;
       }
       asteroids-overlay p {
         background: transparent;
         display: inline;
-        font-size: 10px;
+        font-size: 13px;
         padding: 100px;
       }
     </style>
@@ -95,6 +95,9 @@
       // Asteroids.Game.DIM_Y = window.innerHeight;
       var gameView = new Asteroids.GameView(game, ctx);
       gameView.start();
+      $(window).on("scroll", function(e) {
+        e.preventDefault();
+       });
       var resizing = false;
       // $(window).on("resize", function() {
       //   if (resizing) {
