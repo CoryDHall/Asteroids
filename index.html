@@ -86,8 +86,8 @@
 
     <script>
       var canvasEl = document.getElementById("game-canvas");
-      canvasEl.setAttribute("width", window.innerWidth * 2);
-      canvasEl.setAttribute("height", window.innerHeight * 2);
+      canvasEl.setAttribute("width", window.innerWidth * 3);
+      canvasEl.setAttribute("height", window.innerHeight * 3);
       var ctx = canvasEl.getContext('2d');
       Asteroids = Asteroids || {};
       var game = new Asteroids.Game(canvasEl.width, canvasEl.height);
