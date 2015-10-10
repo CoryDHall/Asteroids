@@ -86,33 +86,32 @@
 
     <script>
       var canvasEl = document.getElementById("game-canvas");
-      canvasEl.setAttribute("width", window.innerWidth * 3);
-      canvasEl.setAttribute("height", window.innerHeight * 3);
+      canvasEl.setAttribute("width", window.innerWidth * 2);
+      canvasEl.setAttribute("height", window.innerHeight * 2);
       var ctx = canvasEl.getContext('2d');
       Asteroids = Asteroids || {};
       var game = new Asteroids.Game(canvasEl.width, canvasEl.height);
-      // Asteroids.Game.DIM_X = window.innerWidth;
-      // Asteroids.Game.DIM_Y = window.innerHeight;
       var gameView = new Asteroids.GameView(game, ctx);
       gameView.start();
       $(window).on("scroll", function(e) {
         e.preventDefault();
        });
       var resizing = false;
-      // $(window).on("resize", function() {
-      //   if (resizing) {
-      //     return;
-      //   }
-      //   setTimeout(function() {
-      //     resizing = false;
-      //     var oldW = ctx.canvas.width, oldH = ctx.canvas.height;
-      //     Asteroids.Game.DIM_X = window.innerWidth;
-      //     Asteroids.Game.DIM_Y = window.innerHeight;
-      //     canvasEl.setAttribute("height", window.innerHeight);
-      //     canvasEl.setAttribute("width", window.innerWidth);
-      //     ctx.scale(1 / (oldW / window.innerWidth), 1 / (oldH / window.innerHeight));
-      //   }, 50);
-      // });
+       $(window).on("resize", function() {
+         if (resizing) {
+           return;
+         }
+         resizing = true;
+         setTimeout(function() {
+           resizing = false;
+           var oldW = ctx.canvas.width, oldH = ctx.canvas.height;
+           Asteroids.Game.DIM_X = window.innerWidth * 2;
+           Asteroids.Game.DIM_Y = window.innerHeight * 2;
+           canvasEl.setAttribute("height", window.innerHeight * 2);
+           canvasEl.setAttribute("width", window.innerWidth * 2);
+           //ctx.scale(1 / (oldW / window.innerWidth), 1 / (oldH / window.innerHeight));
+         }, 50);
+       });
 
 
         var gn = new GyroNorm();
