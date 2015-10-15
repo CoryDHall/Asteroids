@@ -114,7 +114,7 @@
       } catch (e) {
         alert("Something has gone wrong :(\nPlease Refresh");
       } finally {
-        
+
       }
       $(window).on("scroll", function(e) {
         e.preventDefault();
@@ -141,7 +141,7 @@
         gn.init({frequency: 1000/30, decimalCount: 5}).then(function(){
           var timeouts = []
             gn.start(function(data){
-                game.ship.power([(data.do.gamma - 45) / 180, (data.do.beta * 2) / 180]);
+                game.ship.power([(data.do.gamma + 45) / 90, (data.do.beta * 2) / 180]);
             });
         }).catch(function(e){
         });
