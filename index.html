@@ -4,7 +4,7 @@
     <title>Asteroids</title>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=0.8, maximum-scale=0.8, user-scalable=no" />
     <meta name="HandheldFriendly" content="true" />
-    
+
     <style media="screen">
       html, body, canvas, p{
         margin: 0;
@@ -23,12 +23,15 @@
         bottom: 0;
         left: 0;
         right: 0;
-        overflow: auto;
+        overflow: hidden;
       }
 
-      
+
       .ui-loader {
         display: none;
+      }
+      ul {
+        list-style: none;
       }
 
       canvas {
@@ -42,7 +45,8 @@
         display: block;
         /*-webkit-transform: scale(0.5) translateY(-50%) translateX(-50%);
         transform: scale(0.5) translateY(-50%) translateX(-50%);*/
-        /*transform: scaleY(0.8);*/
+        /*-webkit-transform: scaleY(0.99);
+        transform: scaleY(0.99);*/
 
       }
       asteroids-overlay {
@@ -59,11 +63,24 @@
         text-align: center;
         line-height: 13px;
       }
+      asteroids-overlay.paused {
+        text-shadow: 0 1px 3px hsla(360, 100%, 100%, 0.75), 0 -1px 3px hsla(360, 100%, 0%, 0.1);
+        background: hsla(360, 100%, 0%, 0.1);
+        color: hsla(360, 100%, 0%, 0.9);
+        bottom: 0;
+        -webkit-filter: invert(100%);
+        filter: invert(100%);
+      }
       asteroids-overlay p {
         background: transparent;
         display: inline;
         font-size: 13px;
         padding: 100px;
+      }
+
+      #game-canvas.paused {
+        -webkit-filter: blur(2px);
+        filter: blur(2px);
       }
     </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -92,7 +109,13 @@
       Asteroids = Asteroids || {};
       var game = new Asteroids.Game(canvasEl.width, canvasEl.height);
       var gameView = new Asteroids.GameView(game, ctx);
-      gameView.start();
+      try {
+        gameView.start();
+      } catch (e) {
+        alert("Something has gone wrong :(\nPlease Refresh");
+      } finally {
+        
+      }
       $(window).on("scroll", function(e) {
         e.preventDefault();
        });
@@ -109,7 +132,6 @@
            Asteroids.Game.DIM_Y = window.innerHeight * 2;
            canvasEl.setAttribute("height", window.innerHeight * 2);
            canvasEl.setAttribute("width", window.innerWidth * 2);
-           //ctx.scale(1 / (oldW / window.innerWidth), 1 / (oldH / window.innerHeight));
          }, 50);
        });
 
@@ -119,38 +141,9 @@
         gn.init({frequency: 1000/30, decimalCount: 5}).then(function(){
           var timeouts = []
             gn.start(function(data){
-                // Process:
-                // data.do.alpha    ( deviceorientation event alpha value )
-                // data.do.beta     ( deviceorientation event beta value )
-                // data.do.gamma    ( deviceorientation event gamma value )
-                // data.do.absolute ( deviceorientation event absolute value )
-
-
-
-                // data.dm.x        ( devicemotion event acceleration x value )
-                // data.dm.y        ( devicemotion event acceleration y value )
-                // data.dm.z        ( devicemotion event acceleration z value )
-
-                // data.dm.gx       ( devicemotion event accelerationIncludingGravity x value )
-                // data.dm.gy       ( devicemotion event accelerationIncludingGravity y value )
-                // data.dm.gz       ( devicemotion event accelerationIncludingGravity z value )
-
-                // data.dm.alpha    ( devicemotion event rotationRate alpha value )
-                // data.dm.beta     ( devicemotion event rotationRate beta value )
-                // data.dm.gamma    ( devicemotion event rotationRate gamma value )
-
-                // game.allObjects().forEach(function (obj) {
-                //   obj.vel[0] += ;
-                //   obj.vel[1] += ;
-                //
-                // });
-                game.ship.power([data.do.gamma / 90, data.do.beta / 180]);
-                // game.ship.power([((data.do.gamma > 0) - (data.do.gamma < 0)) / 10,((data.do.beta > 0) - (data.do.beta < 0)) / 10]);
-                // game.ship.accel = ;
-                // game.ship.vel = game.ship.vel[0] == 0 && game.ship.vel[1] == 0 ? [Number.MIN_VALUE, Number.MIN_VALUE] : game.ship.vel;
+                game.ship.power([(data.do.gamma - 45) / 180, (data.do.beta * 2) / 180]);
             });
         }).catch(function(e){
-          // Catch if the DeviceOrientation or DeviceMotion is not supported by the browser or device
         });
     </script>
   </body>
