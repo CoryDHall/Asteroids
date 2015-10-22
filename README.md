@@ -1,5 +1,7 @@
 # Asteroids
 
+[![Stack Share](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](http://stackshare.io/CoryDHall/asteroids)
+
 [Link][link]
 
 [link]: http://corydantehall.com/Asteroids
@@ -11,8 +13,8 @@ The goal is to accumulate mass. If your ship has sufficient mass, the asteroid w
 + Controls
 ---
 - Movement is controlled with the arrow keys or tilting your device [if viewing on mobile]
-- Use [space] to shoot [tap]
-- Press [p] to pause [swipe right]
-- Press [x] to change the length of the asteroid tails [swipe left]
-- Press [k] to alter gravity [tap while paused]
-- Press [w] to get help [desktop only]
+- Press <space> or tap to shoot
+- Press <p> or swipe left to pause 
+- Press <x> or swipe right to change the length of the asteroid tails
+- Press <k> or tap to alter gravity [while paused]
+- Press <w> to get help [desktop only]
