@@ -13,8 +13,8 @@ The goal is to accumulate mass. If your ship has sufficient mass, the asteroid w
 + Controls
 ---
 - Movement is controlled with the arrow keys or tilting your device [if viewing on mobile]
-- Press <space> or tap to shoot
-- Press <p> or swipe left to pause 
-- Press <x> or swipe right to change the length of the asteroid tails
-- Press <k> or tap to alter gravity [while paused]
-- Press <w> to get help [desktop only]
+- Press `<space>` or tap to shoot
+- Press `<p>` or swipe left to pause 
+- Press `<x>` or swipe right to change the length of the asteroid tails
+- Press `<k>` or tap to alter gravity [while paused]
+- Press `<w>` to get help [desktop only]
